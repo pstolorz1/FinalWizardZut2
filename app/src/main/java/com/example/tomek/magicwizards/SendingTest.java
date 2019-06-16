@@ -50,7 +50,6 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     int hp_tmp=400;
     static int flaga=0;
 
-
     //! Skonfigurowanie obsługi gestów
     /*!
     Wczytanie pliku z gestami, ustawienie kontrolki wyświetlającej openGL
