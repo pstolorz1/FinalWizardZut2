@@ -1,0 +1,126 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ .idea/misc.xml	(date 1560372529724)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: app/src/main/java/com/example/tomek/magicwizards/ConnectMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/ConnectMenu.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/ConnectMenu.java	(date 1560374949480)
+@@ -6,8 +6,9 @@
+ import android.view.View;
+ import android.widget.Button;
+ 
+-/**  Klasa w której wybieramy poziom sztucznej inteligencji
+- *
++/**  Klasa w ktorej wybieramy poziom sztucznej inteligencji
++ * @see startGame() Wybor latwego poziomu w menu
++ *  @see joinGame() Wybor trudnego poziomu w menu
+  */
+ public class ConnectMenu extends AI {
+ 
+Index: app/src/main/java/com/example/tomek/magicwizards/MainMenu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/MainMenu.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/MainMenu.java	(date 1560375318305)
+@@ -6,6 +6,11 @@
+ import android.view.View;
+ import android.widget.Button;
+ 
++/**  Klasa obslugujaca menu
++ * @param pressPlay guzik do wlaczenia gry
++ * @param pressCredits guzik do pokazania tworcow gry
++ */
++
+ public class MainMenu extends AppCompatActivity {
+ 
+     private Button pressPlay;
+Index: app/src/main/java/com/example/tomek/magicwizards/MyGLSurfaceView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/MyGLSurfaceView.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/MyGLSurfaceView.java	(date 1560375548137)
+@@ -6,6 +6,9 @@
+ import android.util.Log;
+ import android.view.MotionEvent;
+ 
++/**  Klasa wyswietlajaca wzory
++ * @see MYGLSurfaceView funkcja obslugujaca biblioteke OpenGl i wyswietlajaca na ekranie narysowanie wzor
++ */
+ class MyGLSurfaceView extends GLSurfaceView
+ {
+     public MyGLRenderer myRenderer;
+Index: app/src/main/java/com/example/tomek/magicwizards/AI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/AI.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/AI.java	(date 1560373655907)
+@@ -4,7 +4,9 @@
+ import android.widget.EditText;
+ import android.widget.TextView;
+ /**  Klasa reprezentujaca poziomy sztucznej inteligencji
+- *
++ * @see easy() Latwy poziom AI
++ * @see hard() Trudny poziom AI
++ * @param x Wartosci, ktore moze losowac komputer w zaleznosci od poziomu trudnosci
+  */
+ public class AI extends AppCompatActivity {
+     static public boolean flag;
+Index: app/src/main/java/com/example/tomek/magicwizards/CreditsScene.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/CreditsScene.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/CreditsScene.java	(date 1560372528373)
+@@ -4,7 +4,7 @@
+ import android.os.Bundle;
+ import android.widget.Button;
+ 
+-/**  Klasa wczytująca autorów
++/**  Klasa wczytujaca autorow
+  *
+  */
+ public class CreditsScene extends AppCompatActivity {
+Index: app/src/main/java/com/example/tomek/magicwizards/CustomGesturesActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/tomek/magicwizards/CustomGesturesActivity.java	(revision 12b91a9ed097f4ecadcfdddb361f20eecd7e77d4)
++++ app/src/main/java/com/example/tomek/magicwizards/CustomGesturesActivity.java	(date 1560375318422)
+@@ -24,7 +24,13 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-/**  Główna klasa generujaca główny ekran
++/**  Główna klasa generujaca główny ekran z gra
++ * @param hpView wyswietla zycie gracza
++ * @param AIView wyswietla zycia komputera
++ * @param DamageView wyswietla obrazenia zadane przez gracza
++ * @param AIDamageView wyswietla obrazenia zadane przez komputer
++ * @param predictions okresla podobienstwo z narysowanym przez gracza wzorem
++ *
+  *
+  */
+ public class CustomGesturesActivity extends AI implements OnGesturePerformedListener

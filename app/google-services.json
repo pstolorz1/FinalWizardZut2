@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "631210171326",
+    "firebase_url": "https://magicwizards-45310.firebaseio.com",
+    "project_id": "magicwizards-45310",
+    "storage_bucket": "magicwizards-45310.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631210171326:android:0f164fffa09533b3",
+        "android_client_info": {
+          "package_name": "com.example.tomek.magicwizards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631210171326-bsqj2ao0jr98kktcf3qfqg5r4erv973m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tomek.magicwizards",
+            "certificate_hash": "694f6b7f2e4280de751a719bc07ef9c49ada9100"
+          }
+        },
+        {
+          "client_id": "631210171326-aljim9bpktvbfk50egd90ulb8ou687lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1qGRFijPmEDO1lnORGDanbv2WSdDlLzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631210171326-aljim9bpktvbfk50egd90ulb8ou687lq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
