@@ -69,7 +69,6 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
