@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     private TextView AIView;
     private TextView AIDamageView;
     private TextView DamageView;
+    private TextView tmp;
     final DatabaseReference fbDb = FirebaseDatabase.getInstance().getReference();
     View test;
     int HP = 400;
@@ -46,6 +48,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     int abc=0;
     int tmp_id=0;
     int hp_tmp=400;
+    static int flaga=0;
 
 
     //! Skonfigurowanie obsługi gestów
@@ -78,6 +81,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
         test = findViewById(R.id.gOverlay);
         AIDamageView = findViewById(R.id.AIDamageText);
         DamageView = findViewById(R.id.DamageText);
+        tmp = findViewById(R.id.textView6);
 
         b.setOnClickListener(new View.OnClickListener()
         {
@@ -88,6 +92,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
                 DamageView.setText("HP KOMPUTERA: " + String.valueOf(400));
                 AIView.setText("OBRAZENIA KOMPUTERA: "+ String.valueOf(0));
                 AIDamageView.setText("HP GRACZA: " + String.valueOf(400));
+                tmp.setText(String.valueOf(100));
                 String key = fbDb.child("ciosy").push().getKey();
                 TestObject to = new TestObject(key, 0, rand_id, 400);
                 fbDb.child("ciosy").child(key).setValue(to);
@@ -146,13 +151,19 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
 
         }
-        Toast.makeText(getApplicationContext(), "cyk", Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), "cyk", Toast.LENGTH_LONG).show();
 
         String key = fbDb.child("ciosy").push().getKey();
         TestObject to = new TestObject(key, obrazenia_tmp, rand_id, HP_AI);
         fbDb.child("ciosy").child(key).setValue(to);
 
-            Toast.makeText(getApplicationContext(), "cyk2", Toast.LENGTH_LONG).show();
+
+        if(HP_AI<0){
+            flaga=1;
+            setContentView(R.layout.activity_win);
+            }
+
+           // Toast.makeText(getApplicationContext(), "cyk2", Toast.LENGTH_LONG).show();
 
              fbDb.child("ciosy").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -164,22 +175,32 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
                     for (DataSnapshot d : dejta) {
                         TestObject t = d.getValue(TestObject.class);
                         if(t.getid()!=rand_id){
+                           // if(flaga==1)
+                              //  setContentView(R.layout.activity_lost);
                         odebrane_tmp=t.val;
                         tmp_id=t.getid();
                         temp += "READ: " + t.val + " |\n";
                         AIView.setText("OBRAZENIA PRZECIWNIKA: " + String.valueOf(t.getVal()));
-                        AIDamageView.setText("HP GRACZA: " + String.valueOf(t.gethp()));}
+                        AIDamageView.setText("HP GRACZA: " + String.valueOf(t.gethp()));
+                        tmp.setText(String.valueOf(t.gethp()));
+                        }
+
+
+
 
 
                     }
-
+                    if (Integer.parseInt(tmp.getText().toString()) < 0)
+                        setContentView(R.layout.activity_lost);
                     abc++;
                     HP = HP - odebrane_tmp;
                     odebrane_tmp=0;
 
                     //AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
-                    TextView t = findViewById(R.id.readDataText);
-                    t.setText("Liczba obiektów = " + test + "\n" + temp);
+                   // TextView t = findViewById(R.id.readDataText);
+                   // t.setText("Liczba obiektów = " + test + "\n" + temp);
+
+
 
                 }
 
@@ -199,11 +220,11 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
         //int hp_tmp = odebrane_tmp;
        // AIView.setText("OBRAZENIA KOMPUTERA: " + String.valueOf(to.val));
 
-
-            /*if (HP < 0)
+      //  if(!tmp.getText().toString().isEmpty()){
+            if (Integer.parseInt(tmp.getText().toString()) < 0)
                 setContentView(R.layout.activity_lost);
             if (HP_AI < 0)
-                setContentView(R.layout.activity_win);*/
+                setContentView(R.layout.activity_win);
     }
 
 }
