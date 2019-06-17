@@ -1,7 +1,7 @@
 package com.example.tomek.magicwizards;
-//!  Klasa pomocnicza definiująca punkt w przestrzeni
+//!  Klasa pomocnicza definiujaca punkt w przestrzeni
 /*!
-  Jedyne pola to współrzędne x i y typu float
+  Jedyne pola to wspolrzedne x i y typu float
 */
 public class Vec2
 {
@@ -39,7 +39,7 @@ public class Vec2
     }
     //! Nadpisanie metody toString dla tej kalsy
     /*!
-    /return string w formacie X: zmiennaX Y: zmiennaY
+    @return string w formacie X: zmiennaX Y: zmiennaY
     */
     public String toString()
     {

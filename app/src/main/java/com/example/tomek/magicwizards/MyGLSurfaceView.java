@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-/**  Klasa przypisujaca klase MyGlRenderer do kontrolki wyświetlajacej jej wnętrze
- *
+//*  Klasa przypisujaca klase MyGlRenderer do kontrolki wyswietlajacej jej wnetrze
+ /*!
  */
 class MyGLSurfaceView extends GLSurfaceView
 {

@@ -15,13 +15,12 @@ import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
-//!  Klasa zajmująca sie wyświetlaniem przy użyciu openGL
-/*!
-  inicjalizacja openGL, rysowanie gwiazdek i obliczanie pozycji w przestrzeni openGL
+//!  Klasa zajmujaca sie wyswietlaniem przy uzyciu openGL
+/*! inicjalizacja openGL, rysowanie gwiazdek i obliczanie pozycji w przestrzeni openGL
 */
 public class MyGLRenderer implements GLSurfaceView.Renderer
 {
-    //! gwiazda pojawiająca się co jakiś czas podczas robienia gestu
+    //! gwiazda pojawiajaca sie co jakis czas podczas robienia gestu
     Star bigStar;
     // vPMatrix is an abbreviation for "Model View Projection Matrix"
     //! macierz wynikowa
@@ -32,40 +31,40 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
     private final float[] viewMatrix = new float[16];
     //! macierz rotacji/obrotu
     private float[] rotationMatrix = new float[16];
-    //! zmienna przechowująca kąt
+    //! zmienna przechowujaca kat
     public static volatile float mAngle;
-    //! wysokość i szerokość ekranu
+    //! wysokoso i szerokoso ekranu
     public int screenHeight, screenWidth;
     //public float X, Y;
     //! pozycja duzej gwiazdy
     Vec2 starPos;
-    //! liczba małych gwiazdek alokowana przy tworzeniu okna
+    //! liczba malych gwiazdek alokowana przy tworzeniu okna
     int instantiateNumber = 20;
-    //! ilość gwiazdek do wyświetlenia
+    //! iloso gwiazdek do wyswietlenia
     int sqNumber = 20;
-    //! zmienna pomocnicza, w której przechowywana jest skala dużej gwiazdy
+    //! zmienna pomocnicza, w ktorej przechowywana jest skala duzej gwiazdy
     float scaleFactor = 1.0f;
-    //! zmienna pomocnicza, w której przechowywana jest przezroczystość(kanał alpha) dużej gwiazdy
+    //! zmienna pomocnicza, w ktorej przechowywana jest przezroczystoso(kanal alpha) duzej gwiazdy
     float alphaFactor = 0.0f;
-    //! lista współrzędnych małych gwiazdek
+    //! lista wspolrzednych malych gwiazdek
     public List<Vec2> trail = new ArrayList<>();
-    //! lista obiektów (małych gwiazdek)
+    //! lista obiektow (malych gwiazdek)
     public List<Star> symbols = new ArrayList<>();
-    //! flaga sterujaca wyświetlaniem małych gwiazdek
+    //! flaga sterujaca wyswietlaniem malych gwiazdek
     boolean showThem = false;
-    //! flaga sterujaca wyświetlaniem dużej gwiazdki
+    //! flaga sterujaca wyswietlaniem duzej gwiazdki
     boolean showBigStar = false;
 
-    //! Metoda tworząca nową linię z gwiazdek na podstawie współrzędnych gestu
+    //! Metoda tworzaca nowa linie z gwiazdek na podstawie wspolrzednych gestu
     /*!
-      \param positions współrzędne punktów składających się na gest
-      \param trailLength długość gestu
+      \param positions wspolrzedne punktow skladajacych sie na gest
+      \param trailLength dlugoso gestu
     */
     public void NewTrail(float[] positions, float trailLength)
     {
         float distanceBetweenEffects = trailLength / instantiateNumber; /**< obliczamy dlugosc po ktorej umeiszczamy kolejny efekt*/
         //trail.clear();
-        trail.get(0).Set(getWorldCoords(new Vec2(positions[0], positions[1]))); // początek
+        trail.get(0).Set(getWorldCoords(new Vec2(positions[0], positions[1]))); // poczatek
 
         float currUnusedLength = 0f;
         int effects = 1;
@@ -95,20 +94,20 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
         showThem = true;
         showBigStar = false;
     }
-    //! Metoda licząca odległość między punktami w przestrzeni
+    //! Metoda liczaca odlegloso miedzy punktami w przestrzeni
     /*!
-      \param a punkt początkowy
+      \param a punkt poczatkowy
       \param b punkt końcowy
-      \return Odległość między punktami
+      \return Odlegloso miedzy punktami
     */
     public float GetPointsDistance(Vec2 a, Vec2 b)
     {
         return (float)Math.sqrt(Math.pow((b.X()-a.X()), 2) + Math.pow((b.Y()-a.Y()), 2));
     }
-    //! Metoda, która nakazuje rysowanie gwiazdy w danym punkcie
+    //! Metoda, ktora nakazuje rysowanie gwiazdy w danym punkcie
     /*!
-      \param x wspołrzędna x gwiazdy
-      \param y wspołrzędna y gwiazdy
+      \param x wspolrzedna x gwiazdy
+      \param y wspolrzedna y gwiazdy
     */
     public void ShowStar(float x, float y)
     {
@@ -120,7 +119,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
             showBigStar = true;
         }
     }
-    //! Metoda, w której czyszczony jest ekran i inicjalizowane są wszystkie używane później obiekty
+    //! Metoda, w ktorej czyszczony jest ekran i inicjalizowane sa wszystkie uzywane poźniej obiekty
     /*!
     */
     public void onSurfaceCreated(GL10 unused, EGLConfig config)
@@ -138,9 +137,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
         }
     }
 
-    //! Metoda, zajmująca sie rysowaniem pojedyńczej klatki
+    //! Metoda, zajmujaca sie rysowaniem pojedyńczej klatki
     /*!
-      \param gl nie używany parametr
+      \param gl nie uzywany parametr
     */
     public void onDrawFrame(GL10 gl)
     {
@@ -198,10 +197,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
 
         Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
-    //! Metoda, wczytująca shader
+    //! Metoda, wczytujaca shader
     /*!
       \param type typ shadera
-      \param shaderCode treść shadera
+      \param shaderCode treso shadera
     */
     public static int loadShader(int type, String shaderCode){
 
@@ -216,9 +215,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
         return shader;
     }
 
-    //! Metoda, przekształcająca wspołrzędne dotyku na współrzędne w przestrzeni openGL
+    //! Metoda, przeksztalcajaca wspolrzedne dotyku na wspolrzedne w przestrzeni openGL
     /*!
-      \param touch wspołrzędna punktu na ekranie
+      \param touch wspolrzedna punktu na ekranie
       \return Punkt w przestrzeni openGL
     */
     public Vec2 getWorldCoords( Vec2 touch)

@@ -1,5 +1,8 @@
 package com.example.tomek.magicwizards;
 
+//!  Klasa odpowiedzialna za obsluge bazy danych. Znajduja sie w niej konstruktory, settery i gettery do pol
+/*!
+ */
 public class TestObject
 {
     public TestObject(String uuid, int val, int id, int hp)

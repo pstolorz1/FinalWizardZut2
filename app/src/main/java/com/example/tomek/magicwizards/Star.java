@@ -7,15 +7,15 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-//!  Klasa definiujaca gwiazdkę z wykorzystaniem openGL
+//!  Klasa definiujaca gwiazdke z wykorzystaniem openGL
 /*!
-  Definiowanie kształtu (współrzędne wierzchołków), koloru, shadera
+  Definiowanie ksztaltu (wspolrzedne wierzcholkow), koloru, shadera
 */
 public class Star
 {
-    //! bufor wierzchołków
+    //! bufor wierzcholkow
     private FloatBuffer vertexBuffer;
-    //! bufor listy trójkątów, z których zbudowny jest kwadrat
+    //! bufor listy trojkatow, z ktorych zbudowny jest kwadrat
     private ShortBuffer drawListBuffer;
     private int mProgram;
     private int positionHandle;
@@ -24,9 +24,9 @@ public class Star
 
 
     // number of coordinates per vertex in this array
-    //! ilość współrzędnych określających jeden wierzchołek
+    //! iloso wspolrzednych okreslajacych jeden wierzcholek
     final int COORDS_PER_VERTEX = 3;
-    //! tablica współrzędnych wierzchołków
+    //! tablica wspolrzednych wierzcholkow
     float squareCoords[] = {
             0.0f,  0.5f, 0.0f,   // top top
             -0.1f, 0.2f, 0.0f,   // top left
@@ -39,7 +39,7 @@ public class Star
             -0.15f,0.0f,0.0f,      // middle left
             -0.4f, 0.2f, 0.0f    // right
             };
-    //! tablcia indexów tablicy squareCoords, które tworzą trojkąty
+    //! tablcia indexow tablicy squareCoords, ktore tworza trojkaty
     private short drawOrder[] = { 0, 1, 2,  1, 3, 2,   2,3,4,   3,5,6,  8,5,3,  8,7,5,  1,8,3,   9,8,1}; // order to draw vertices
     private final int vertexCount = squareCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
@@ -69,19 +69,19 @@ public class Star
 
     //! Konstruktor
     /*!
-    /param scale skala gwiazdki
+    @param scale skala gwiazdki
      */
     public Star(float scale)
     {
         initialSettings(scale);
 
     }
-    //! Metoda ustawiająca kolor gwiazdki
+    //! Metoda ustawiajaca kolor gwiazdki
     /*!
-    /param R współczynnik R - czerwony
-    /param G współczynnik G - zielony
-    /param B współczynnik B - niebieski
-    /param A współczynnik A - przezroczystość
+    @param R wspolczynnik R - czerwony
+    @param G wspolczynnik G - zielony
+    @param B wspolczynnik B - niebieski
+    @param A wspolczynnik A - przezroczystoso
     */
     public void setColor(float R,float G,float B, float A)
     {
@@ -93,22 +93,22 @@ public class Star
         colorB = B;
         colorA = A;
     }
-    //! Metoda ustawiająca wspołczynnik alpha gwiazdki
+    //! Metoda ustawiajaca wspolczynnik alpha gwiazdki
     /*!
-    /param A współczynnik A - przezroczystość
+    @param A wspolczynnik A - przezroczystoso
     */
     public void setAlpha(float A)
     {
         colorA = A;
     }
-    //! Bezargumentowy kontruktor, domyślnie ustawiający skalę na 1.0
+    //! Bezargumentowy kontruktor, domyslnie ustawiajacy skale na 1.0
     /*!
     */
     public Star()
     {
         initialSettings(1.0f);
     }
-    //! Metoda ustawiająca parametry openGl do wyświetlania gwiazdki
+    //! Metoda ustawiajaca parametry openGl do wyswietlania gwiazdki
     /*!
     */
     public void initialSettings(float scale)
@@ -159,9 +159,9 @@ public class Star
         // creates OpenGL ES program executables
         GLES20.glLinkProgram(mProgram);
     }
-    //! Metoda rysująca gwiazdkę
+    //! Metoda rysujaca gwiazdke
     /*!
-    /param mvpMatrix macierz wynikowa (połączenie maceirzy projekcji i widoku)
+    @param mvpMatrix macierz wynikowa (polaczenie maceirzy projekcji i widoku)
     */
     public void draw(float[] mvpMatrix)
     {

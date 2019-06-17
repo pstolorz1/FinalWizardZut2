@@ -24,7 +24,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  import android.view.View;
  import android.widget.Button;
  
--/**  Klasa w której wybieramy poziom sztucznej inteligencji
+-/**  Klasa w ktorej wybieramy poziom sztucznej inteligencji
 - *
 +/**  Klasa w ktorej wybieramy poziom sztucznej inteligencji
 + * @see startGame() Wybor latwego poziomu w menu
@@ -97,7 +97,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  import android.os.Bundle;
  import android.widget.Button;
  
--/**  Klasa wczytująca autorów
+-/**  Klasa wczytujaca autorow
 +/**  Klasa wczytujaca autorow
   *
   */
@@ -113,8 +113,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
  import java.util.ArrayList;
  import java.util.List;
  
--/**  Główna klasa generujaca główny ekran
-+/**  Główna klasa generujaca główny ekran z gra
+-/**  Glowna klasa generujaca glowny ekran
++/**  Glowna klasa generujaca glowny ekran z gra
 + * @param hpView wyswietla zycie gracza
 + * @param AIView wyswietla zycia komputera
 + * @param DamageView wyswietla obrazenia zadane przez gracza

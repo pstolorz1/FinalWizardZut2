@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,19 +19,21 @@ import java.util.List;
 
 ;
 
-/**  Główna klasa generujaca główny ekran z gra
+/*! Glowna klasa generujaca glowny ekran z gra
  *
  *
  */
 public class CustomGesturesActivity extends AI implements OnGesturePerformedListener
 {
-    private GestureLibrary gLibrary; /**< obiekt biblioteki gestów */
-    private MyGLSurfaceView gLView; /**< kontrolka,na której rysowane zostana obiekty openGL*/
-    private TextView resultView; /**< kontrolka pokazująca wynik wykonania gestu*/
+    private GestureLibrary gLibrary; /**< obiekt biblioteki gestow */
+    private MyGLSurfaceView gLView; /**< kontrolka,na ktorej rysowane zostana obiekty openGL*/
+    private TextView resultView; /**< kontrolka pokazujaca wynik wykonania gestu*/
     private TextView hpView; /**< wyswietla zycie gracza*/
     private TextView AIView; /**< wyswietla zycia komputera*/
     private TextView AIDamageView; /**< wyswietla obrazenia zadane przez komputer*/
     private TextView DamageView; /**< wyswietla obrazenia zadane przez gracza*/
+    private ProgressBar hpBar_Player;
+    private ProgressBar hpBar_Opponent;
     View test;
     int HP = 400;
     int HP_AI = 400;
@@ -55,10 +58,13 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
         test = findViewById(R.id.gOverlay);
         AIDamageView = findViewById(R.id.AIDamageText);
         DamageView = findViewById(R.id.DamageText);
+        hpBar_Player = findViewById(R.id.progressBar4);
+        hpBar_Opponent = findViewById(R.id.progressBar6);
         test.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
 
                 // Interpret MotionEvent data
                 /*if(System.currentTimeMillis() - currTimeInMs > 10000)
@@ -90,9 +96,9 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
         super.onResume();
         gLView.onResume();
     }
-    //! Skonfigurowanie obsługi gestów
+    //! Skonfigurowanie obslugi gestow
     /*!
-    Wczytanie pliku z gestami, ustawienie kontrolki wyświetlającej openGL
+    Wczytanie pliku z gestami, ustawienie kontrolki wyswietlajacej openGL
     */
     private void gestureSetup() {
         gLibrary =
@@ -107,10 +113,10 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
         GestureOverlayView gOverlay = findViewById(R.id.gOverlay);
         gOverlay.addOnGesturePerformedListener(this);
     }
-    //! Metoda obsługująca rozpoznanie gestu
+    //! Metoda obslugujaca rozpoznanie gestu
     /*!
-    /param overlay kontrolka przechwytujaca gesty
-    /param gesture przechwycony gest
+    @param overlay kontrolka przechwytujaca gesty
+    @param gesture przechwycony gest
     */
     public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture)
     {
@@ -119,7 +125,7 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
         //resultView.setText(gs.get(0).length + " ");
         ArrayList<Prediction> predictions = gLibrary.recognize(gesture); /**< okresla podobienstwo z narysowanym przez gracza wzorem*/
 
-        // TODO Zależność między "czarem", a progiem rozpoznawania (prediction.score)
+        // TODO Zaleznoso miedzy "czarem", a progiem rozpoznawania (prediction.score)
         if (predictions.size() > 0 && predictions.get(0).score > 1.0)
         {
             //gLView.myRenderer.NewTrail(gs.get(0).points, gs.get(0).length);
@@ -134,18 +140,21 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
             HP_AI=HP_AI-result;
             resultView.setText("OBRAZENIA GRACZA: " + result.toString());
             DamageView.setText("HP PRZECIWNIKA: " + String.valueOf(HP_AI));
+            hpBar_Opponent.setProgress(HP_AI/4);
             if(flag)
             {
                 int hp_tmp=easy();
                 AIView.setText("OBRAZENIA PRZECIWNIKA: "+ String.valueOf(hp_tmp));
                 HP=HP-hp_tmp;
                 AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
+                hpBar_Player.setProgress(HP/4);
             }
             else{
                 int hp_tmp=hard();
                 AIView.setText("OBRAZENIA PRZECIWNIKA: " + String.valueOf(hp_tmp));
                 HP=HP-hp_tmp;
-                AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));}
+                AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
+                hpBar_Player.setProgress(HP/4);}
         }
         //changeHPonHit();
         if(HP<0)
@@ -155,7 +164,7 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
 
         else
         {
-            // TODO Zmienić na Integer
+            // TODO Zmienio na Integer
             //resultView.setText("0");
         }
 
@@ -166,9 +175,9 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
     {
         currTimeInMs = System.currentTimeMillis();
     }*/
-    /* Funkcja odpowiedzialna za zmianę ikonki HP poszczegolnego gracza
+    /* Funkcja odpowiedzialna za zmiane ikonki HP poszczegolnego gracza
     * imageView i ImageView2 odpowiedzialne za graczy
-    * Brokenhp i else istnieje tylko dlatego, że jest to exception przed crashem, jesli w jakis sposob wartosc zmiennej HP lub HP_AI jest... dzwina*/
+    * Brokenhp i else istnieje tylko dlatego, ze jest to exception przed crashem, jesli w jakis sposob wartosc zmiennej HP lub HP_AI jest... dzwina*/
    /* public void changeHPonHit(){
         ImageView imageView = (ImageView) findViewById(R.id.imageView3);
         ImageView imageView2 = (ImageView) findViewById(R.id.imageView4);

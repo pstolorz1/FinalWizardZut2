@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+//*
+/*! Klasa w ktorej mozna wybierac miedzy gra z komputerem a gra przez komunikacje
+*/
 public class ChooseMenu extends AI {
     private Button Computer;
     private Button Communiaction;
@@ -35,19 +37,24 @@ public class ChooseMenu extends AI {
         });
     }
 
+    /*! Metoda losujaca id dla gracza z zakresu [1-1000]
+    */
     Integer losuj_id()
     {
-        //! Wartosci, ktore moze losowac komputer w zaleznosci od poziomu trudnosci
         int x = (int)(Math.random() * 1000 + 1); /**< Wartosci, ktore moze losowac komputer w zaleznosci od poziomu trudnosci*/
         return(x);
     }
 
+    /*! Metoda ladujaca gre z komputerem
+     */
     public void computer()
     {
         Intent intent = new Intent(this, ConnectMenu.class);
         startActivity(intent);
     }
 
+    /*! Metoda ladujaca gre z komunikacja
+     */
     public void communication()
     {
         //Toast.makeText(getApplicationContext(), "Komunikacja", Toast.LENGTH_LONG).show();

@@ -14,10 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-/**  Klasa obslugujaca menu
- *
- */
 
+//!  Klasa obslugujaca menu
+/*!
+ */
 public class MainMenu extends AppCompatActivity {
 
     private Button pressPlay; /**< guzik do wlaczenia gry*/
@@ -61,14 +61,14 @@ public class MainMenu extends AppCompatActivity {
             }
         });
     }
-    /**  Funkcja przenoszaca z jednego activity do drugiego
+    /*!  Funkcja przenoszaca z jednego activity do drugiego
      *
      */
     public void openMainMenu(){
         Intent intent = new Intent(this, ChooseMenu.class);
         startActivity(intent);
     }
-    /**  Funkcja przenoszaca z jednego activity do drugiego
+    /**! Funkcja przenoszaca z jednego activity do drugiego
      *
      */
     public void openCredits()

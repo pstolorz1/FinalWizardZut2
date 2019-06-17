@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,9 @@ import java.util.List;
 
 import static com.example.tomek.magicwizards.AI.flag;
 
+//!  Klasa odpowiedzialna za gre z kouminacja
+/*!
+ */
 public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGesturePerformedListener {
 
     private GestureLibrary gLibrary;
@@ -39,6 +43,8 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     private TextView AIDamageView;
     private TextView DamageView;
     private TextView tmp;
+    private ProgressBar hpBar_Player;
+    private ProgressBar hpBar_Opponent;
     final DatabaseReference fbDb = FirebaseDatabase.getInstance().getReference();
     View test;
     int HP = 400;
@@ -50,9 +56,9 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
     int hp_tmp=400;
     static int flaga=0;
 
-    //! Skonfigurowanie obsługi gestów
+    //! Skonfigurowanie obslugi gestow
     /*!
-    Wczytanie pliku z gestami, ustawienie kontrolki wyświetlającej openGL
+    Wczytanie pliku z gestami, ustawienie kontrolki wyswietlajacej openGL
     */
     private void gestureSetup() {
         gLibrary =
@@ -80,6 +86,8 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
         AIDamageView = findViewById(R.id.AIDamageText);
         DamageView = findViewById(R.id.DamageText);
         tmp = findViewById(R.id.textView6);
+        hpBar_Player = findViewById(R.id.progressBar4);
+        hpBar_Opponent = findViewById(R.id.progressBar6);
 
         b.setOnClickListener(new View.OnClickListener()
         {
@@ -134,7 +142,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
         ArrayList<Prediction> predictions = gLibrary.recognize(gesture); /**< okresla podobienstwo z narysowanym przez gracza wzorem*/
 
-        // TODO Zależność między "czarem", a progiem rozpoznawania (prediction.score)
+        // TODO Zaleznoso miedzy "czarem", a progiem rozpoznawania (prediction.score)
         if (predictions.size() > 0 && predictions.get(0).score > 1.0)
         {
             Integer result = (int) (predictions.get(0).score);
@@ -163,6 +171,9 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
            // Toast.makeText(getApplicationContext(), "cyk2", Toast.LENGTH_LONG).show();
 
+        //!  Funkcja odpowiedzialna za zczytwanie i przypisywanie wartosci do bazy danych
+        /*!
+         */
              fbDb.child("ciosy").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -180,6 +191,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
                         temp += "READ: " + t.val + " |\n";
                         AIView.setText("OBRAZENIA PRZECIWNIKA: " + String.valueOf(t.getVal()));
                         AIDamageView.setText("HP GRACZA: " + String.valueOf(t.gethp()));
+                        hpBar_Player.setProgress(t.gethp()/4);
                         tmp.setText(String.valueOf(t.gethp()));
                         }
 
@@ -196,7 +208,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
                     //AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
                    // TextView t = findViewById(R.id.readDataText);
-                   // t.setText("Liczba obiektów = " + test + "\n" + temp);
+                   // t.setText("Liczba obiektow = " + test + "\n" + temp);
 
 
 
@@ -215,6 +227,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
         resultView.setText("OBRAZENIA GRACZA: " + obrazenia_tmp);
         DamageView.setText("HP PRZECIWNIKA: " + String.valueOf(HP_AI));
+        hpBar_Opponent.setProgress(HP_AI/4);
         //int hp_tmp = odebrane_tmp;
        // AIView.setText("OBRAZENIA KOMPUTERA: " + String.valueOf(to.val));
 
