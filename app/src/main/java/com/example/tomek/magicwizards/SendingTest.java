@@ -6,6 +6,8 @@ import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureStroke;
 import android.gesture.Prediction;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -191,6 +193,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
                         temp += "READ: " + t.val + " |\n";
                         AIView.setText("OBRAZENIA PRZECIWNIKA: " + String.valueOf(t.getVal()));
                         AIDamageView.setText("HP GRACZA: " + String.valueOf(t.gethp()));
+                        hpBar_Player.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
                         hpBar_Player.setProgress(t.gethp()/4);
                         tmp.setText(String.valueOf(t.gethp()));
                         }
@@ -227,6 +230,7 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
 
         resultView.setText("OBRAZENIA GRACZA: " + obrazenia_tmp);
         DamageView.setText("HP PRZECIWNIKA: " + String.valueOf(HP_AI));
+        hpBar_Opponent.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
         hpBar_Opponent.setProgress(HP_AI/4);
         //int hp_tmp = odebrane_tmp;
        // AIView.setText("OBRAZENIA KOMPUTERA: " + String.valueOf(to.val));

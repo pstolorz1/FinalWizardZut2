@@ -7,6 +7,8 @@ import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.GestureStroke;
 import android.gesture.Prediction;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -140,6 +142,7 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
             HP_AI=HP_AI-result;
             resultView.setText("OBRAZENIA GRACZA: " + result.toString());
             DamageView.setText("HP PRZECIWNIKA: " + String.valueOf(HP_AI));
+            hpBar_Opponent.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
             hpBar_Opponent.setProgress(HP_AI/4);
             if(flag)
             {
@@ -147,6 +150,7 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
                 AIView.setText("OBRAZENIA PRZECIWNIKA: "+ String.valueOf(hp_tmp));
                 HP=HP-hp_tmp;
                 AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
+                hpBar_Player.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
                 hpBar_Player.setProgress(HP/4);
             }
             else{
@@ -154,6 +158,7 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
                 AIView.setText("OBRAZENIA PRZECIWNIKA: " + String.valueOf(hp_tmp));
                 HP=HP-hp_tmp;
                 AIDamageView.setText("HP GRACZA: " + String.valueOf(HP));
+                hpBar_Player.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
                 hpBar_Player.setProgress(HP/4);}
         }
         //changeHPonHit();
