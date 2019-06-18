@@ -125,7 +125,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer
     public void onSurfaceCreated(GL10 unused, EGLConfig config)
     {
         // Set the background frame color
-        GLES20.glClearColor(1.0f, 0.2f, 0.2f, 1.0f);
+        GLES20.glClearColor(0.6f, 0.2f, 0.2f, 1.0f);
         //mSquare = ne
         bigStar = new Star(0.2f);
         //bigStar.setColor(0,0,1,0.5f);

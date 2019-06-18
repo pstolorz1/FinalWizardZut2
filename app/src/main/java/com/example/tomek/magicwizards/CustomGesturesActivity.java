@@ -62,6 +62,10 @@ public class CustomGesturesActivity extends AI implements OnGesturePerformedList
         DamageView = findViewById(R.id.DamageText);
         hpBar_Player = findViewById(R.id.progressBar4);
         hpBar_Opponent = findViewById(R.id.progressBar6);
+        hpBar_Opponent.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        hpBar_Opponent.setProgress(100);
+        hpBar_Player.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        hpBar_Player.setProgress(100);
         test.setOnTouchListener(new View.OnTouchListener()
         {
             @Override

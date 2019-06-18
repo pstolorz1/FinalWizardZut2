@@ -105,6 +105,10 @@ public class SendingTest extends ChooseMenu implements GestureOverlayView.OnGest
                 TestObject to = new TestObject(key, 0, rand_id, 400);
                 fbDb.child("ciosy").child(key).setValue(to);
                 HP_AI=400;
+                hpBar_Opponent.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+                hpBar_Opponent.setProgress(100);
+                hpBar_Player.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+                hpBar_Player.setProgress(100);
             }
         });
 
